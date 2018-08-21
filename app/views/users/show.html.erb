@@ -1,0 +1,12 @@
+<h1><%= @user.name %></h1>
+<p>Logged in as: <%= @user.email %></p>
+
+<h2>Actual Expenses</h2>
+<% @user.transactions.each do |transaction| %>
+<p><%= transaction.month %>/<%= transaction.year %>: <%= transaction.actual_expense.line_item %> | <%= transaction.actual_expense.amount %> </p>
+<% end %>
+
+<h2>Budget</h2>
+<% @user.transactions.uniq.find do |transaction| %>
+<p><%= transaction.month %>/<%= transaction.year %>: <%= transaction.budget_expense.category %> | <%= transaction.budget_expense.amount %> </p>
+<% end %>

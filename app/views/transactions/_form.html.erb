@@ -1,0 +1,12 @@
+<%= form_with model: @transaction, builder: TemplateFormBuilder do |f| %>
+<%= f.text_field :user_id %>
+<%= f.text_field :actual_expense_line_item %>
+<%= f.text_field :actual_expense_amount %>
+<%= f.text_field :budget_expense_category  %>
+<%= f.text_field :budget_expense_amount %>
+<%= f.text_field :month  %>
+<%= f.text_field :day  %>
+<%= f.text_field :year  %>
+
+<%= f.submit %>
+<% end %>

@@ -1,0 +1,8 @@
+<h1><%= @transaction.id %></h1>
+<p>Logged in as: </p>
+
+<h2>Expense</h2>
+<p><%= @transaction.month %>/<%= @transaction.year %>: <%= @transaction.actual_expense.line_item %> | <%= @transaction.actual_expense.amount %> </p>
+
+<h2>Budget</h2>
+<p><%= @transaction.month %>/<%= @transaction.year %>: <%= @transaction.budget_expense.category %> | <%= @transaction.budget_expense.amount %> </p>
