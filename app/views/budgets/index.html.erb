@@ -1,0 +1,36 @@
+<style>
+table, th, td, tr {
+    border: 1px solid black;
+}
+td {
+  width: 200px;
+}
+td:first-child {
+  width: 100px;
+}
+</style>
+<h1>Budget</h1>
+<%= form_tag('/budgets', method: 'get') do %>
+ <%= label_tag(:search, 'Search for:') %>
+ <%= text_field_tag(:search) %>
+ <%= submit_tag('Search') %>
+<% end %>
+
+<br>
+<br>
+<p>Number of Budget Items: <%= @budgets.count %></p>
+<p>Total Budget Amount: $<%= @sum %></p>
+
+<table>
+<th>Period</th><th>Category</th><th>Amount</th><th>Edit/Delete</th>
+<% @highest_sort.each do |budget|%>
+<tr>
+<td><%= budget.period.month %>/<%= budget.period.year %></td>
+<td><%= budget.category.name.capitalize %></td>
+<td>$<%= budget.amount %></td>
+<td><%= link_to "Edit", edit_budget_path(budget)%> | <%= link_to "Delete", budget_path(budget), method: :delete %></td>
+</tr>
+<% end %>
+</table>
+<br>
+<div><%= link_to "Add New Budget", new_budget_path %></div>

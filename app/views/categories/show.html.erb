@@ -1,0 +1,43 @@
+<style>
+table, th, td, tr {
+    border: 1px solid black;
+}
+td {
+  width: 200px;
+}
+td:first-child {
+  width: 100px;
+}
+</style>
+<h1><%= @period.name%> Report</h1>
+
+<p></p>
+
+<table>
+<th>Date</th>
+<th>Vendor</th>
+<th>Expense Type</th>
+<th>Amount</th>
+<tr>
+<% @period.transactions.each do |transaction| %>
+<td><%= transaction.period.month %>/<%= transaction.date %>/<%= transaction.period.year %></td>
+<td><%= transaction.vendor %></td>
+<td><%= transaction.subcategory.name%></td>
+<td>$<%= transaction.amount %></td>
+</tr>
+<% end %>
+</table>
+
+<table>
+<th>Budget Category</th>
+<th>Budget Amount</th>
+<th>Difference</th>
+<tr>
+<% @period.budgets.each do |budget| %>
+<td><%= budget.category.name %></td>
+<td><%= budget.amount %></td>
+<td><%= "difference_calc" %></td>
+</tr>
+<% end %>
+
+</table>

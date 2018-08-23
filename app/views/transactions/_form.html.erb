@@ -1,12 +1,18 @@
 <%= form_with model: @transaction, builder: TemplateFormBuilder do |f| %>
-<%= f.text_field :user_id %>
-<%= f.text_field :actual_expense_line_item %>
-<%= f.text_field :actual_expense_amount %>
-<%= f.text_field :budget_expense_category  %>
-<%= f.text_field :budget_expense_amount %>
-<%= f.text_field :month  %>
-<%= f.text_field :day  %>
-<%= f.text_field :year  %>
 
+<%= f.select :period_id, Period.all.map { |period| [period.name, period.id]} %><br>
+
+<%= f.text_field :subcategory_name, list: "subcategories_autocomplete" %>
+  <datalist id="subcategories_autocomplete">
+    <% Subcategory.all.each do |subcategory| %>
+      <option value="<%= subcategory.name %>">
+    <% end %>
+  </datalist>
+  <%= f.select :category_id, Category.all.map { |c| [c.name, c.id] } %>
+<%= f.text_field :date %>
+<%= f.text_field :vendor %>
+<%= f.text_field :amount %>
+<label>Description</label><br>
+<%= f.text_area :description %><br>
 <%= f.submit %>
 <% end %>

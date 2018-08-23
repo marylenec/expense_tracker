@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   has_many :transactions
+  has_many :budgets
+  has_many :subcategories, through: :transactions
+  has_many :categories, through: :budgets
+  has_many :dashboards
   validates :name, presence: true
   validates :email, presence: true
   validates :password, presence: true

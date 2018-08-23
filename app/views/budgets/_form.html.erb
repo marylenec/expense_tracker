@@ -1,0 +1,14 @@
+<%= form_with model: @budget, builder: TemplateFormBuilder do |f| %>
+
+<%= f.select :period_id, Period.all.map { |period| [period.name, period.id]} %><br>
+
+<%= f.text_field :category_name, list: "categories_autocomplete" %>
+  <datalist id="categories_autocomplete">
+    <% Category.all.each do |category| %>
+      <option value="<%= category.name %>">
+    <% end %>
+  </datalist>
+<%= f.text_field :amount %>
+
+<%= f.submit %>
+<% end %>

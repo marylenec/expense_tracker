@@ -1,0 +1,26 @@
+<style>
+table, th, td, tr {
+    border: 1px solid black;
+}
+td {
+  width: 200px;
+}
+td:first-child {
+  width: 100px;
+}
+</style>
+<h1>Reports Dashboard</h1>
+
+<p>Number of available reports: <%= @periods.count %></p>
+<p>Today's Date: <%= Time.now.strftime("%B %d, %Y %l:%M")%> </p>
+
+<table>
+<th>Date</th><th>Report Name</th><th>Report Description</th>
+<tr>
+<% @periods.each do |period| %>
+<td><%= period.name %></td>
+<td><%= link_to period.dashboard.name, period_path(period) %></td>
+<td><%= period.dashboard.description %></td>
+</tr>
+<% end %>
+</table>
