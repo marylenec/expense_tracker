@@ -1,36 +1,41 @@
-<style>
-table, th, td, tr {
-    border: 1px solid black;
-}
-td {
-  width: 200px;
-}
-td:first-child {
-  width: 100px;
-}
-</style>
-<h1>Budget</h1>
+<div class="header-wrapper-bdgt">
+  <h1 class="bdgt">Budget</h1>
+</div>
+<div class="form-wrapper">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-1 clearfix">
 <%= form_tag('/budgets', method: 'get') do %>
- <%= label_tag(:search, 'Search for:') %>
- <%= text_field_tag(:search) %>
- <%= submit_tag('Search') %>
+<%= label_tag(:search, 'Search for:') %>
+<%= text_field_tag(:search) %>
+<span class="search"><%= submit_tag('Search') %></span>
 <% end %>
+<br>
+<br>
+    <p>Number of Budget Items:
+      <%= @budgets.count %></p>
+    <p>Total Budget Amount: $<%= @sum %></p>
 
-<br>
-<br>
-<p>Number of Budget Items: <%= @budgets.count %></p>
-<p>Total Budget Amount: $<%= @sum %></p>
+    <table class="table">
+      <th>Period</th>
+      <th>Category</th>
+      <th>Amount</th>
+      <th>Edit/Delete</th>
+      <% @highest_sort.each do |budget|%>
+        <tr>
+          <td><%= budget.period.month %>/<%= budget.period.year %></td>
+          <td><%= budget.category.name.capitalize %></td>
+          <td><%= budget.format_amount %></td>
+          <td><%= link_to "Edit", edit_budget_path(budget)%>
+            |
+            <%= link_to "Delete", budget_path(budget), method: :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+    <br>
+    <span class="submit"><%= button_to "Add New Budget", new_budget_path, :class=>"button", :method => :get %></span>
 
-<table>
-<th>Period</th><th>Category</th><th>Amount</th><th>Edit/Delete</th>
-<% @highest_sort.each do |budget|%>
-<tr>
-<td><%= budget.period.month %>/<%= budget.period.year %></td>
-<td><%= budget.category.name.capitalize %></td>
-<td>$<%= budget.amount %></td>
-<td><%= link_to "Edit", edit_budget_path(budget)%> | <%= link_to "Delete", budget_path(budget), method: :delete %></td>
-</tr>
-<% end %>
-</table>
-<br>
-<div><%= link_to "Add New Budget", new_budget_path %></div>
+  </div>
+  <div class="col-md-offset-1 col-md-4 col-sm-offset-3 col-sm-6">
+    <span class="box-green">Optional image here</span>
+
+  </div>

@@ -1,23 +1,29 @@
-<style>
-table, th, td, tr {
-    border: 1px solid black;
-}
-td {
-  width: 200px;
-}
-td:first-child {
-  width: 100px;
-}
-</style>
-<h1>User Dashboard</h1>
-
+<div class="header-wrapper-oth">
+  <h1 class="oth">Welcome</h1>
+</div>
+<div class="form-wrapper">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 clearfix">
 <p>Today's Date: <%= Time.now.strftime("%B %d, %Y %l:%M")%> </p>
+<span class="lg" ><%= icon('fas', 'home') %></span>
+<span class="lg" ><%= icon('fas', 'paw') %></span>
 
-<table>
-<th>users</th>
+<span class="lg" ><%= icon('fas', 'car') %></span>
+<span class="lg" ><%= icon('fas', 'plane') %></span>
+
+<span class="lg" ><%= icon('fas', 'shopping-cart') %></span>
+<span class="lg" ><%= icon('fas', 'bicycle') %></span>
+<span class="lg" ><%= icon('fas', 'film') %></span>
+
+
+<h2>Users</h2>
+<ul>
 <% @users.each do |user| %>
-<tr>
-<td><%= user.name %></td>
-</tr>
+<li><%= user.name %></li>
 <% end %>
-</table>
+</ul>
+</div>
+
+
+
+</div>

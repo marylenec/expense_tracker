@@ -1,14 +1,21 @@
-<%= form_with model: @budget, builder: TemplateFormBuilder do |f| %>
-
-<%= f.select :period_id, Period.all.map { |period| [period.name, period.id]} %><br>
-
-<%= f.text_field :category_name, list: "categories_autocomplete" %>
-  <datalist id="categories_autocomplete">
-    <% Category.all.each do |category| %>
-      <option value="<%= category.name %>">
-    <% end %>
-  </datalist>
-<%= f.text_field :amount %>
-
-<%= f.submit %>
-<% end %>
+<div class="form-wrapper">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-1 clearfix">
+      <%= form_with model: @budget, builder: TemplateFormBuilder do |f| %>
+      <%= f.select :period_id, Period.all.map { |period| [period.name, period.id]} %><br>
+      <%= f.text_field :category_name, list: "categories_autocomplete" %>
+      <datalist id="categories_autocomplete">
+        <% Category.all.each do |category| %>
+          <option value="<%= category.name %>">
+          <% end %>
+        </datalist>
+        <%= f.text_field :amount %>
+        <%= f.text_area :description %><br>
+        <span class="submit"><%= f.submit %></span>
+      <% end %>
+    </div>
+    <div class="col-md-offset-1 col-md-4 col-sm-offset-3 col-sm-6">
+      <span class="box-green">Optional image here</span>
+    </div>
+  </div>
+</div>

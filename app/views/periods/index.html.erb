@@ -1,26 +1,29 @@
-<style>
-table, th, td, tr {
-    border: 1px solid black;
-}
-td {
-  width: 200px;
-}
-td:first-child {
-  width: 100px;
-}
-</style>
-<h1>Reports Dashboard</h1>
+<div class="header-wrapper-oth">
+  <h1 class="oth">Reports Dashboard</h1>
+</div>
+<div class="form-wrapper">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-1 clearfix">
+      <p>Number of available reports:
+        <%= @periods.count %></p>
+      <p>Today's Date:
+        <%= Time.now.strftime("%B %d, %Y %l:%M")%>
+      </p>
 
-<p>Number of available reports: <%= @periods.count %></p>
-<p>Today's Date: <%= Time.now.strftime("%B %d, %Y %l:%M")%> </p>
+      <table class="table">
+        <th>Date</th>
+        <th>Report Name</th>
+        <th>Report Description</th>
+        <tr>
+          <% @periods.each do |period| %>
+            <td><%= period.name %></td>
+            <td><%= link_to period.dashboard.name, period_path(period) %></td>
+            <td><%= period.dashboard.description %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-md-offset-1 col-md-4 col-sm-offset-3 col-sm-6">
+      <span class="box-green">Optional image here</span>
 
-<table>
-<th>Date</th><th>Report Name</th><th>Report Description</th>
-<tr>
-<% @periods.each do |period| %>
-<td><%= period.name %></td>
-<td><%= link_to period.dashboard.name, period_path(period) %></td>
-<td><%= period.dashboard.description %></td>
-</tr>
-<% end %>
-</table>
+    </div>

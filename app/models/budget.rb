@@ -1,4 +1,6 @@
 class Budget < ApplicationRecord
+  include ActionView::Helpers::NumberHelper
+
   belongs_to :user
   belongs_to :category
   belongs_to :period
@@ -16,6 +18,9 @@ class Budget < ApplicationRecord
     Budget.all.size
   end
 
+  def format_amount
+    number_to_currency(self.amount, precision: 2)
+  end
 
   # def period_month=(month)
   #   self.period_month = Period.find_or_create_by(month: month)

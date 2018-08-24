@@ -8,5 +8,5 @@
 
 <h2>Expenses</h2>
 <% @user.transactions.each do |transaction| %>
-<p><%= transaction.period.month %>/<%= transaction.period.year %>: <%= transaction.subcategory.name %> | <%= transaction.amount %> </p>
+<p><%= transaction.period.month %>/<%= transaction.period.year %>: <%= transaction.subcategory.name %> | <%= transaction.format_amount %> </p>
 <% end %>

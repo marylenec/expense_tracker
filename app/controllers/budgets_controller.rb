@@ -37,7 +37,7 @@ class BudgetsController < ApplicationController
     @budget = Budget.new(params_budget)
     @budget.user = User.all.first
     @budget.save
-    redirect_to budget_path(@budget)
+    redirect_to budgets_path
   end
 
   def edit

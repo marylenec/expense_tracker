@@ -1,19 +1,10 @@
-<style>
-table, th, td, tr {
-    border: 1px solid black;
-}
-td {
-  width: 200px;
-}
-td:first-child {
-  width: 100px;
-}
-</style>
-<h1><%= @period.name%> Report</h1>
-
-<p></p>
-
-<table>
+<div class="header-wrapper-oth">
+  <h1 class="oth"><%= @period.name%> Report</h1>
+</div>
+<div class="form-wrapper">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-1 clearfix">
+<table class="table">
 <th>Date</th>
 <th>Vendor</th>
 <th>Expense Type</th>
@@ -27,7 +18,7 @@ td:first-child {
 <td><%= transaction.period.month %>/<%= transaction.date %>/<%= transaction.period.year %></td>
 <td><%= transaction.vendor %></td>
 <td><%= transaction.subcategory.name%></td>
-<td>$<%= transaction.amount %></td>
+<td>$<%= transaction.format_amount %></td>
 <% if i <= @period.budgets.length - 1 %>
 
 <td><%= @period.budgets[i].category.name %></td>
@@ -39,3 +30,8 @@ td:first-child {
 <% end %>
 
 </table>
+</div>
+<div class="col-md-offset-1 col-md-4 col-sm-offset-3 col-sm-6">
+  <span class="box-green">Optional image here</span>
+
+</div>

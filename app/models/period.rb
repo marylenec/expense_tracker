@@ -1,4 +1,6 @@
 class Period < ApplicationRecord
+  include ActionView::Helpers::NumberHelper
+  
   has_many :transactions
   has_many :budgets
   belongs_to :dashboard
@@ -10,4 +12,9 @@ class Period < ApplicationRecord
   def count
     Period.all.size
   end
+
+  def format_amount
+    number_to_currency(self.amount, precision: 2)
+  end
+
 end

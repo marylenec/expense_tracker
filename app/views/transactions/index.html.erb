@@ -1,32 +1,38 @@
-<style>
-table, th, td, tr {
-    border: 1px solid black;
-}
-td {
-  width: 200px;
-}
-td:first-child {
-  width: 100px;
-}
-</style>
-<h1>All Expenses</h1>
+<div class="header-wrapper-txn">
+  <h1 class="txn">Transactions</h1>
+</div>
+<div class="form-wrapper">
+  <div class="row">
+    <div class="col-md-7 col-md-offset-1 clearfix">
+      <%= form_tag('/transactions', method: 'get') do %>
+      <%= label_tag(:search, 'Search for:') %>
+      <%= text_field_tag(:search) %>
+      <span class="search"><%= submit_tag('Search') %></span>
+    <% end %>
+    <br>
+    <br>
+      <p>Number of transactions:
+        <%= @transactions.count %></p>
+      <p>Total Expenses: $<%= @sum %></p>
 
-<p>Highest Category: <%=  %></p>
-<p>Number of transactions: <%= @transactions.count %></p>
-<p>Total Expenses: $<%= @sum %></p>
+      <table class="table">
 
-<table>
+        <!-- sort by date -->
+        <th>Date</th>
+        <th>Account Type</th>
+        <th>Amount</th>
+        <th>View/Edit/Delete</th>
+        <% @sort.each do |transaction| %>
+          <tr>
+            <td><%= transaction.period.month %>/<%= transaction.date %>/<%= transaction.period.year %></td>
+            <td><%= transaction.subcategory.name %></td>
+            <td><%= transaction.format_amount %></td>
+            <td><%= link_to "View", transaction_path(transaction) %> | <%= link_to "Edit", edit_transaction_path(transaction) %> | <%= link_to "Delete", transaction_path(transaction), method: :delete %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-md-offset-1 col-md-3 col-sm-offset-3 col-sm-6">
+      <span class="box-purple">Optional image here</span>
 
-  <!-- sort by date -->
-<th>Date</th><th>Vendor</th><th>Account Type</th><th>Amount</th><th>See Details</th><th>Edit/Delete</th>
-<% @sort.each do |transaction| %>
-<tr>
-<td><%= transaction.period.month %>/<%= transaction.date %>/<%= transaction.period.year %></td>
-<td><%= transaction.vendor %></td>
-<td><%= transaction.subcategory.name %></td>
-<td>$<%= transaction.amount %></td>
-<td><%= link_to "View More", transaction_path(transaction) %></td>
-<td><%= link_to "Edit", edit_transaction_path(transaction) %> | <%= link_to "Delete", transaction_path(transaction), method: :delete %></td>
-</tr>
-<% end %>
-</table>
+    </div>

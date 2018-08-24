@@ -3,7 +3,13 @@ class TransactionsController < ApplicationController
 
   def index
     # render welcome:static page
-    @transactions = Transaction.all
+
+    if params[:search]
+     @transactions = Transaction.all.select { |transaction| transaction.subcategory.name.include?(params[:search].downcase)}
+     else
+     @transactions = Transaction.all
+     end
+
     @sort = @transactions.sort_by { |transaction| transaction.date }
     @highest = @transactions.max_by { |transaction| transaction.amount }
     @sum = @transactions.sum do |transaction|
