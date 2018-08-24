@@ -3,25 +3,25 @@
 </div>
 <div class="form-wrapper">
   <div class="row">
-    <div class="col-md-7 col-md-offset-1 clearfix">
+    <div class="col-md-10 col-md-offset-1 clearfix">
       <table class="table">
 
         <!-- sort by date -->
         <th>Date</th>
         <th>Vendor</th>
         <th>Expense Type</th>
-        <th>Budget Category</th>
         <th>Amount</th>
+        <th>Budget Category</th>
+        <th>Budget Amount</th>
         <tr>
           <td><%= @transaction.period.month %>/<%= @transaction.date %>/<%= @transaction.period.year %></td>
           <td><%= @transaction.vendor %></td>
-          <td><%= @transaction.subcategory.category.name %></td>
           <td><%= @transaction.subcategory.name %></td>
           <td><%= @transaction.format_amount %></td>
+          <td><%= @transaction.subcategory.category.name %></td>
+          <td><%= @transaction.category_total %></td>
         </tr>
       </table>
     </div>
-    <div class="col-md-offset-1 col-md-3 col-sm-offset-3 col-sm-6">
-      <span class="box-purple">Optional image here</span>
-
-    </div>
+  </div>
+</div>

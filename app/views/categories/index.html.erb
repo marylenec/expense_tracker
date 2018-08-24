@@ -1,15 +1,9 @@
-<style>
-table, th, td, tr {
-    border: 1px solid black;
-}
-td {
-  width: 200px;
-}
-td:first-child {
-  width: 150px;
-}
-</style>
-<h1>Reports Dashboard</h1>
+<div class="header-wrapper-bdgt">
+  <h1 class="bdgt">Budget Categories</h1>
+</div>
+<div class="form-wrapper">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 clearfix">
 
 <%= form_tag('/categories', method: :get) do %>
  <%= label_tag(:search, 'Search for:') %>
@@ -20,7 +14,7 @@ td:first-child {
 <p>Number of categories: <%= @categories.count %></p>
 <p>Today's Date: <%= Time.now.strftime("%B %d, %Y %l:%M")%> </p>
 <% @categories.each do |category| %>
-<table>
+<table class="table">
 <th>Budget Period</th><th><%= category.name.capitalize %></th><th>Description</th>
 <%category.budgets.each do |budget| %>
 <tr>
@@ -32,3 +26,6 @@ td:first-child {
 </table>
 <br>
 <% end %>
+</div>
+</div>
+</div>

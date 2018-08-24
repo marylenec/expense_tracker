@@ -3,7 +3,7 @@
 </div>
 <div class="form-wrapper">
   <div class="row">
-    <div class="col-md-7 col-md-offset-1 clearfix">
+    <div class="col-md-10 col-md-offset-1 clearfix">
       <%= form_tag('/transactions', method: 'get') do %>
       <%= label_tag(:search, 'Search for:') %>
       <%= text_field_tag(:search) %>
@@ -13,7 +13,7 @@
     <br>
       <p>Number of transactions:
         <%= @transactions.count %></p>
-      <p>Total Expenses: $<%= @sum %></p>
+      <p>Total Expenses: <%= number_to_currency(@sum, precise: 2) %></p>
 
       <table class="table">
 
@@ -31,8 +31,4 @@
           </tr>
         <% end %>
       </table>
-    </div>
-    <div class="col-md-offset-1 col-md-3 col-sm-offset-3 col-sm-6">
-      <span class="box-purple">Optional image here</span>
-
     </div>

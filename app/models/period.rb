@@ -1,9 +1,8 @@
 class Period < ApplicationRecord
   include ActionView::Helpers::NumberHelper
-  
+
   has_many :transactions
   has_many :budgets
-  belongs_to :dashboard
 
   def name
     "#{month}/#{year}"
@@ -15,6 +14,10 @@ class Period < ApplicationRecord
 
   def format_amount
     number_to_currency(self.amount, precision: 2)
+  end
+
+  def sort_month
+    self.month.sort
   end
 
 end

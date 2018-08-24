@@ -13,17 +13,14 @@
       <table class="table">
         <th>Date</th>
         <th>Report Name</th>
-        <th>Report Description</th>
         <tr>
           <% @periods.each do |period| %>
             <td><%= period.name %></td>
-            <td><%= link_to period.dashboard.name, period_path(period) %></td>
-            <td><%= period.dashboard.description %></td>
+            <td><%= link_to period.name, period_path(period) %></td>
           </tr>
         <% end %>
       </table>
     </div>
-    <div class="col-md-offset-1 col-md-4 col-sm-offset-3 col-sm-6">
-      <span class="box-green">Optional image here</span>
-
+  </div>
+    
     </div>

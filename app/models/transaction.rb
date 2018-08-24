@@ -1,6 +1,6 @@
 class Transaction < ApplicationRecord
   include ActionView::Helpers::NumberHelper
-  
+
   belongs_to :user
   belongs_to :subcategory
   belongs_to :period
@@ -19,6 +19,21 @@ class Transaction < ApplicationRecord
 
   def format_amount
     number_to_currency(self.amount, precision: 2)
+  end
+
+  def category_total
+    subcategory_total = 0
+
+    own_subcategories = Subcategory.all.select do |subcategory|
+      subcategory.transactions.include?(self)
+    end
+
+    own_subcategories.each do |subcategory|
+      subcategory.transactions.each do |transaction|
+        subcategory_total += transaction.amount
+      end
+    end
+    number_to_currency(subcategory_total, precision: 2)
   end
 
 end
